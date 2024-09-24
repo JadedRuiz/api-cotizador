@@ -110,4 +110,44 @@ class CotizacionController extends Controller
         }
         return $interesados;
     }
+
+    function generarCotizacionAdmin(Request $data) {
+        $cotizacion = new Cotizaciones();
+        $cotizacion->iIdLote= $data['iIdLote'];
+        $cotizacion->iIdPlazo= $data['iIdPlazo'];
+        $cotizacion->sNombre= "Aministrador";
+        $cotizacion->sCorreo= "";
+        $cotizacion->sTelefono= "";
+        $cotizacion->sCiudad= "";
+        $cotizacion->iEnganche= $data['iEnganche'];
+        $cotizacion->dtCreacion = date('Y-m-d');
+
+        $data_view = [
+            "info_ciudadano" => $cotizacion,
+            "info_lote" => [],
+            "info_plazo" => json_decode(json_encode([
+                "sPlazo" => "CONTADO",
+                "iNoPlazo" => 1,
+                "iInteres" => 100, 
+            ]))
+        ];
+
+        $data_view["info_lote"]= Lote::select('tblL.iLote','tblL.sTipoLote','tbE.sEtapa',"tbE.iEtapa","tblL.iSuperficie","tblL.iPrecioM2Contado")
+        ->join("tbl_etapa as tbE","tbE.iIdEtapa","=","tblL.iIdEtapa")
+        ->where("iIdLote",$data["iIdLote"])
+        ->first();
+
+        if($data['iIdPlazo'] > 0) {
+            $data_view["info_plazo"]= Plazo::select("sPlazo","iNoPlazo","iInteres")
+            ->where("iIdPlazo",$data["iIdPlazo"])
+            ->first();
+        }
+
+        try {
+            $pdf_b64= PDF::generarPDF($data_view);
+            return $this->crearRespuesta(1,$pdf_b64,200);
+        }catch(\Exception $e) {
+            return $this->crearRespuesta(2,Errores::getError("CE003",$e->getMessage()),201);
+        }
+    }
 }

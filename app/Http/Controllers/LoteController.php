@@ -43,10 +43,23 @@ class LoteController extends Controller
             ->where("tblL.iIdEtapa",$request["iIdEtapa"])
             ->orderBy("tblL.iLote","ASC")
             ->get();
+
+            foreach($respuesta["lotes"] as $lote) {
+                $lote->iIdPlazo = 0;
+                $lote->iEnganche = $lote->iMinEnganche;
+            }
             return $this->crearRespuesta(1,$respuesta,200);
         } catch(\Exception $e) {
             return $this->crearRespuesta(2,Errores::getError("AD001"),201);
         }        
+    }
+
+    public function editarLotesAdmin(Request $request) {
+        try {
+            Lote::whereId($request["iIdLote"])->update($request->all());
+        }catch(\Exception | \PDOException $e){
+            return $this->crearRespuesta(2,Errores::getError("AD003"),201);
+        }
     }
 
     public function cambiarStatusLote(Request $request) {

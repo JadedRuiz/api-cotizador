@@ -21,7 +21,8 @@ class Errores
             "AU001" => "El token proporcionado no es valido",
             //Errores Admin
             "AD001" => "No se pudieron recuperar los lotes de está etapa",
-            "AD002" => "No se pudo actualizar el status"
+            "AD002" => "No se pudo actualizar el status",
+            "AD003" => "Errror al actualizar: ".$message
         ];
         return $errores[$codeError];
     }

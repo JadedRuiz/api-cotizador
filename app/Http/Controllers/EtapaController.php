@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Utils\Errores;
 use App\Models\Etapa;
 use App\Models\Lote;
 use App\Models\Plazo;

@@ -32,7 +32,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('getEtapasAdmin', 'EtapaController@getEtapasAdmin');
         $router->post('obtenerLotesEtapaAdmin', 'LoteController@obtenerLotesEtapaAdmin');
         $router->post('cambiarStatusLote', 'LoteController@cambiarStatusLote');
-        $router->post('obtenerCotizacionesLote', 'CotizacionController@obtenerCotizacionesLote');  
+        $router->post('obtenerCotizacionesLote', 'CotizacionController@obtenerCotizacionesLote');
+        $router->post('generarCotizacionAdmin', 'CotizacionController@generarCotizacionAdmin');    
     });
 
     //Rutas Cotizador
