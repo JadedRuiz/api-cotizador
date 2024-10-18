@@ -162,8 +162,7 @@
                                                 <td align="center" valign="top">
 
                                                     <font face="Arial" color="#FFFFFF" size="2" style="font-family: 'Raleway', sans-serif; font-weight: 200;">
-                                                    San Jerónimo<br>
-                                                    Teléfono: (999) Aqui va el telefono<br> San Jerónimo. Copyright © {{ date('Y') }}
+                                                    San Jerónimo. Copyright © {{ date('Y') }}
                                                     </font>
                                                 </td>
                                             </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
 {
@@ -13,6 +14,11 @@ class Controller extends BaseController
         if($tipo == 2) {    //Failed
             return response()->json(['ok' => false, 'data' => $obj], $http_response);
         }
+    }
+
+    public function resetearId($table) {
+        $maxId = DB::table($table)->max('iIdCotizacion');
+        DB::statement("ALTER TABLE $table AUTO_INCREMENT=$maxId");
     }
 
     function decode_json($code) {

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cotizaciones extends Model
 {
-    protected $table = 'tbl_cotizaciones as tblC';
+    protected $table = 'tbl_cotizaciones';
 
     const UPDATED_AT = null;
     const CREATED_AT = null;
