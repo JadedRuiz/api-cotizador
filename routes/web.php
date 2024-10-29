@@ -1,17 +1,6 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
+use App\Http\Controllers\LoteController;
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
@@ -29,16 +18,20 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     //Rutas Admin
     $router->group(['prefix' => 'admin'], function () use ($router) {
-        $router->post('getEtapasAdmin', 'EtapaController@getEtapasAdmin');
-        $router->post('obtenerLotesEtapaAdmin', 'LoteController@obtenerLotesEtapaAdmin');
-        $router->post('cambiarStatusLote', 'LoteController@cambiarStatusLote');
+        //Rutas lote
+        $router->group(['prefix' => 'lote'], function () use ($router) {
+            $router->post('obtenerLotesEtapa', 'LoteController@obtenerLotesEtapa');
+            $router->post('cambiarStatusLote', 'LoteController@cambiarStatusLote');
+            $router->post('guardarLote', 'LoteController@guardarLote');
+        });
         $router->post('obtenerCotizacionesLote', 'CotizacionController@obtenerCotizacionesLote');
+        $router->post('getEtapasAdmin', 'EtapaController@getEtapasAdmin');
         $router->post('generarCotizacionAdmin', 'CotizacionController@generarCotizacionAdmin');    
     });
 
     //Rutas Cotizador
     $router->group(['prefix' => 'cotizador'], function () use ($router) {
-        $router->get('obtenerLotesEtapa/{iIdEtapa}', 'LoteController@obtenerLotesEtapa');
+        $router->get('getLotesPorEtapaId/{iIdEtapa}', 'LoteController@getLotesPorEtapaId');
         $router->get('obtenerPlazosPorEtapa/{iIdEtapa}', 'EtapaController@obtenerPlazosPorEtapa');
         $router->post('guardarCotizacion', 'CotizacionController@guardarCotizacion');      
     });

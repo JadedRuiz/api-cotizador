@@ -226,8 +226,8 @@ class CotizacionController extends Controller
             ]))
         ];
 
-        $data_view["info_lote"]= Lote::select('tblL.iLote','tblL.sTipoLote','tbE.sEtapa',"tbE.iEtapa","tblL.iSuperficie","tblL.iPrecioM2Contado")
-        ->join("tbl_etapa as tbE","tbE.iIdEtapa","=","tblL.iIdEtapa")
+        $data_view["info_lote"]= Lote::select('iLote','sTipoLote','tbE.sEtapa',"tbE.iEtapa","iSuperficie","iPrecioM2Contado")
+        ->join("tbl_etapa as tbE","tbE.iIdEtapa","=","tbl_lote.iIdEtapa")
         ->where("iIdLote",$data["iIdLote"])
         ->first();
 

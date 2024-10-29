@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\DB;
 use App\Utils\Errores;
 
 class UsuarioController extends Controller
@@ -40,6 +41,8 @@ class UsuarioController extends Controller
 
         if($usuario){
             if($this->decode_json($usuario->sContra) == $credentials["sContra"]) {
+                $empresa = DB::table("tbl_empresa")->where("iIdEmpresa",$usuario->iIdEmpresa)->first();
+                $usuario->empresa = $empresa->sEmpresa;
                 return $this->crearRespuesta(1,$this->encode_json($usuario),200);
             }
             return $this->crearRespuesta(2,Errores::getError("USR003"),201); 

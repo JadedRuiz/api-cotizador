@@ -27,7 +27,9 @@ class Errores
             //Errores Admin
             "AD001" => "No se pudieron recuperar los lotes de está etapa",
             "AD002" => "No se pudo actualizar el status",
-            "AD003" => "Errror al actualizar: ".$message
+            "AD003" => "Errror al actualizar: ".$message,
+            //Errores Lote
+            "LOT001" => "Ha ocurrido un problema al insertar la información, si el problema persiste contacte con el administrador '".getenv("MAIL_ADMIN")."'"
         ];
         return $errores[$codeError];
     }
