@@ -31,7 +31,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     //Rutas Cotizador
     $router->group(['prefix' => 'cotizador'], function () use ($router) {
-        $router->get('getLotesPorEtapaId/{iIdEtapa}', 'LoteController@getLotesPorEtapaId');
+        //Rutas lote
+        $router->group(['prefix' => 'lote'], function () use ($router) {
+            $router->get('getLotesPorEtapaId/{iIdEtapa}', 'LoteController@getLotesPorEtapaId');
+        });
+        
         $router->get('obtenerPlazosPorEtapa/{iIdEtapa}', 'EtapaController@obtenerPlazosPorEtapa');
         $router->post('guardarCotizacion', 'CotizacionController@guardarCotizacion');      
     });
