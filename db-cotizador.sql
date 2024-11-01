@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tbl_adjunto`
+--
+
+DROP TABLE IF EXISTS `tbl_adjunto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbl_adjunto` (
+  `iIdAdjunto` int NOT NULL AUTO_INCREMENT,
+  `sPath` varchar(300) DEFAULT NULL,
+  `dtMod` date DEFAULT NULL,
+  `dtCreacion` date DEFAULT NULL,
+  `bActivo` int DEFAULT NULL,
+  PRIMARY KEY (`iIdAdjunto`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_adjunto`
+--
+
+LOCK TABLES `tbl_adjunto` WRITE;
+/*!40000 ALTER TABLE `tbl_adjunto` DISABLE KEYS */;
+INSERT INTO `tbl_adjunto` VALUES (1,'/Ziba/svgs/Nivel1.svg',NULL,'2024-11-01',1);
+/*!40000 ALTER TABLE `tbl_adjunto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_configuracion`
 --
 
@@ -117,6 +144,7 @@ DROP TABLE IF EXISTS `tbl_etapa`;
 CREATE TABLE `tbl_etapa` (
   `iIdEtapa` int NOT NULL AUTO_INCREMENT,
   `iIdProyecto` int DEFAULT NULL,
+  `iIdAdjunto` int DEFAULT NULL,
   `sEtapa` varchar(500) DEFAULT NULL,
   `iEtapa` int DEFAULT NULL,
   `iMinEnganche` int DEFAULT NULL,
@@ -135,7 +163,7 @@ CREATE TABLE `tbl_etapa` (
 
 LOCK TABLES `tbl_etapa` WRITE;
 /*!40000 ALTER TABLE `tbl_etapa` DISABLE KEYS */;
-INSERT INTO `tbl_etapa` VALUES (1,1,'ETAPA #6',6,20,1,0,'2024-08-31 00:00:00',NULL,1),(2,2,'NIVEL 1',1,20,1,1,'2024-10-30 00:00:00',NULL,1);
+INSERT INTO `tbl_etapa` VALUES (1,1,0,'ETAPA #6',6,20,1,0,'2024-08-31 00:00:00',NULL,1),(2,2,1,'NIVEL 1',1,20,1,1,'2024-10-30 00:00:00',NULL,1);
 /*!40000 ALTER TABLE `tbl_etapa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +310,7 @@ CREATE TABLE `tbl_usuario` (
   `dtMod` datetime DEFAULT NULL,
   `bActivo` int DEFAULT NULL,
   PRIMARY KEY (`iIdUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +319,7 @@ CREATE TABLE `tbl_usuario` (
 
 LOCK TABLES `tbl_usuario` WRITE;
 /*!40000 ALTER TABLE `tbl_usuario` DISABLE KEYS */;
-INSERT INTO `tbl_usuario` VALUES (1,1,NULL,'Admon. San Jeronimo','sanjero_@dm1n','AVmpGYWExVjNQVDA9taW4uMDAYtx','2024-09-03 00:00:00',NULL,1);
+INSERT INTO `tbl_usuario` VALUES (1,1,NULL,'Admon. San Jeronimo','sanjero_@dm1n','AVmpGYWExVjNQVDA9taW4uMDAYtx','2024-09-03 00:00:00',NULL,1),(2,2,NULL,'Admon. Ziba','admin.ziba','zVm0xd1MwNUhSblJXYTJoVllXczFVbFpyVWtKUFVUMDk=iYTIwMjQvv=','2024-10-31 00:00:00',NULL,1);
 /*!40000 ALTER TABLE `tbl_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -304,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-30 15:46:11
+-- Dump completed on 2024-11-01 12:22:49

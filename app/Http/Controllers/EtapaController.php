@@ -9,15 +9,21 @@ use App\Utils\Errores;
 use App\Models\Etapa;
 use App\Models\Lote;
 use App\Models\Plazo;
+use Illuminate\Support\Facades\Storage;
 
 class EtapaController extends Controller
 {
     public function getEtapas($iIdProyecto) {
-        $etapa = Etapa::where('iIdProyecto',$iIdProyecto)
-        ->where('bActivo',1)
+        $etapas = Etapa::select("iIdEtapa","sEtapa","sPath")
+        ->leftJoin("tbl_adjunto as tblA","tblA.iIdAdjunto","=","tblE.iIdAdjunto")
+        ->where('iIdProyecto',$iIdProyecto)
+        ->where('tblE.bActivo',1)
         ->orderBy('iOrden','ASC')
         ->get();
-        return $this->crearRespuesta(1,$etapa,200);
+        foreach($etapas as $etapa) {
+            $etapa->sPath = Storage::disk("empresa")->url($etapa->sPath);
+        }
+        return $this->crearRespuesta(1,$etapas,200);
     }
 
     public function obtenerPlazosPorEtapa($iIdEtapa) {
