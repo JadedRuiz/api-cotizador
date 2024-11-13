@@ -38,7 +38,7 @@ CREATE TABLE `tbl_adjunto` (
 
 LOCK TABLES `tbl_adjunto` WRITE;
 /*!40000 ALTER TABLE `tbl_adjunto` DISABLE KEYS */;
-INSERT INTO `tbl_adjunto` VALUES (1,'/Ziba/svgs/Nivel1.svg',NULL,'2024-11-01',1);
+INSERT INTO `tbl_adjunto` VALUES (1,'./assets/Imagenes/Empresas/Ziba/svgs/NIVEL_1.svg',NULL,'2024-11-01',1);
 /*!40000 ALTER TABLE `tbl_adjunto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,7 @@ CREATE TABLE `tbl_etapa` (
 
 LOCK TABLES `tbl_etapa` WRITE;
 /*!40000 ALTER TABLE `tbl_etapa` DISABLE KEYS */;
-INSERT INTO `tbl_etapa` VALUES (1,1,0,'ETAPA #6',6,20,1,0,'2024-08-31 00:00:00',NULL,1),(2,2,1,'NIVEL 1',1,20,1,1,'2024-10-30 00:00:00',NULL,1);
+INSERT INTO `tbl_etapa` VALUES (1,1,0,'ETAPA #6',6,20,1,0,'2024-08-31 00:00:00',NULL,1),(2,2,1,'NIVEL_1',1,20,1,1,'2024-10-30 00:00:00',NULL,1);
 /*!40000 ALTER TABLE `tbl_etapa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-01 12:22:49
+-- Dump completed on 2024-11-13 17:12:21
