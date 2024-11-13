@@ -20,9 +20,6 @@ class EtapaController extends Controller
         ->where('tblE.bActivo',1)
         ->orderBy('iOrden','ASC')
         ->get();
-        foreach($etapas as $etapa) {
-            $etapa->sPath = Storage::disk("empresa")->url($etapa->sPath);
-        }
         return $this->crearRespuesta(1,$etapas,200);
     }
 
